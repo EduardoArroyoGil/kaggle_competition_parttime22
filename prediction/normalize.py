@@ -84,8 +84,7 @@ class DesNorm:
     def manual(self, average, maximum, minimum):
         '''
 
-        :return: return the data frame with the respond variable (predicted) normalized by manual method based on
-        formula (x-average)/(max-min)
+        :return: inverse method to return real variable based on manual formual (x-average)/(max-min)
         '''
 
         self.df[self.predicted] = self.df[self.predicted + "_NORM_MANUAL"]*(maximum - minimum) + average
@@ -97,7 +96,7 @@ class DesNorm:
     def logarithm(self):
         '''
 
-        :return: return the data frame with the respond variable (predicted) normalized by logarithm method
+        :return: inverse method to return real variable based on logarithm expression (exponential to inverse)
         '''
 
         self.df[self.predicted] = self.df[self.predicted+ "_NORM_LOG"].apply(lambda x: np.exp(x) if x != 0 else 0)
@@ -109,7 +108,7 @@ class DesNorm:
     def root_square(self):
         '''
 
-        :return: return the data frame with the respond variable (predicted) normalized by root square method
+        :return: inverse method to return real variable based on root square expression
         '''
 
         self.df[self.predicted] = self.df[self.predicted+ "_NORM_SQRT"].apply(lambda x: x**2)
@@ -121,7 +120,8 @@ class DesNorm:
     def min_max_scaler(self, model_fitted):
         '''
 
-        :return: return the data frame with the respond variable (predicted) normalized by Min Max Scaler method
+        :param model_fitted: model fitted previously to be able to recover real variable
+        :return: inverse method to return real variable based on min max scaler sklearn method
         '''
 
         # construir el modelo de escalador
