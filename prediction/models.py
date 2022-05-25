@@ -3,19 +3,12 @@ from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.model_selection import GridSearchCV
-from sklearn import tree
 from sklearn import metrics
 
 # Cluster Modeling
 # ==============================================================================
 from sklearn.cluster import KMeans, DBSCAN
 from yellowbrick.cluster import KElbowVisualizer
-from sklearn.metrics import silhouette_score
-from sklearn.decomposition import PCA
-# Cluster Quality
-# ==============================================================================
-from ds_utils.unsupervised import plot_cluster_cardinality, plot_cluster_magnitude, plot_magnitude_vs_cardinality
-from scipy.spatial.distance import euclidean
 
 # Graphs
 # ==============================================================================
@@ -341,7 +334,7 @@ class Unsupervised:
 
         return df, km_fit
 
-    def separate_df(self,df_clustered):
+    def separate_df(self, df_clustered):
         '''
 
         :return: it returns a dictionary separated by each cluster with the structure {cluster_name : dataframe_cluster}
