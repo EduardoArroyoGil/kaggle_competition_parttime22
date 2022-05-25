@@ -37,6 +37,8 @@ class Process:
             df = stand.stand_robust_scaler()
         elif standarization == 'manual':
             df = stand.stand_manual()
+        elif standarization == 'None':
+            pass
         print(df.columns)
 
         # NORMALIZE PROCESS
@@ -54,6 +56,8 @@ class Process:
             df = norm.root_square()
         elif normalization == 'min_max_scaler':
             df, model_fitted = norm.min_max_scaler()
+        elif normalization == 'None':
+            pass
         print(df.columns)
 
         # PREDICTING PROCESS
@@ -77,6 +81,8 @@ class Process:
             df = desnorm.root_square()
         elif normalization == 'min_max_scaler':
             df = desnorm.min_max_scaler(model_fitted)
+        elif normalization == 'None':
+            pass
 
         dict_models = dict()
 
