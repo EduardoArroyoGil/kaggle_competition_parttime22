@@ -234,28 +234,36 @@ class Supervised:
         '''
 
         :return: this function returns all the models under the supervised class fitted for the df give as input
-        as well as the dataframe with the errors and R2 results for each model
+        as well as the dataframe with the errors and R2 results for each model contained in a dictionary dict_models
         '''
+
+        dict_models = {}
 
         try:
             lr, lr_results = self.linear()
             print('Prediction Linear Regression algorithm finished')
+            dict_models['lr'] = lr
         except Exception as e:
             print(f"WARNING: Linear regression algorithm failed with error: {e}")
+            dict_models['lr'] = f"Linear regression algorithm failed with error: {e}"
         try:
             dt, dt_results, dt_importances = self.decission_tree()
             print('Prediction Decision Tree algorithm finished')
+            dict_models['dt'] = dt
         except Exception as e:
             print(f"WARNING: Decision Tree algorithm failed with error: {e}")
+            dict_models['lr'] = f"Decision Tree algorithm failed with error: {e}"
         try:
             rf, rf_results, rf_importances = self.random_forest()
             print('Prediction Random Forest algorithm finished')
+            dict_models['rf'] = rf
         except Exception as e:
             print(f"WARNING: Random Forest algorithm failed with error: {e}")
+            dict_models['lr'] = f"Random Forest algorithm failed with error: {e}"
 
         results = pd.concat([lr_results, dt_results, rf_results], axis=0)
 
-        return lr, dt, rf, results
+        return dict_models, results
 
 
 class Unsupervised:

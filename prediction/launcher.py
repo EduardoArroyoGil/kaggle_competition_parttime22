@@ -17,8 +17,8 @@ class Process:
 
         :param df_raw: data frame used to calculate the predict model
         :param data: the cluster of data you want to use to fit the prediction, total by default
-        :return: this funcion returns the results of the models wihtin a dataframe called 'results', the data frame used in the preocess and the
-        models of predictions.
+        :return: this funcion returns the results of the models wihtin a dataframe called 'results', the data frame used
+         in the preocess and the models of predictions.
         '''
 
         standarization = self.standarization
@@ -59,7 +59,7 @@ class Process:
         # PREDICTING PROCESS
         print(f"\nPREDICTING PROCESS for {data} Data Frame:\n")
         supervised = models.Supervised(df)
-        lr, dt, rf, results = supervised.all_models()
+        all_models, results = supervised.all_models()
         results["Cluster"] = data
 
         # DESNORMALIZE PROCESS
@@ -78,13 +78,18 @@ class Process:
         elif normalization == 'min_max_scaler':
             df = desnorm.min_max_scaler(model_fitted)
 
-        return results, df, lr, dt, rf
+        dict_models = dict()
+
+        dict_models[data] = all_models
+
+        return results, df, dict_models
 
     def clustered_data(self, df_to_cluster, number_clusters=2):
         '''
 
         :param number_clusters: number of clusters you would like to divide, 2 by default
-        :return:
+        :return: this funcion returns the results of the models wihtin a dataframe called 'results', the data frame used
+         in the preocess and the models of predictions separated by clusters
         '''
 
         df = df_to_cluster
@@ -103,8 +108,10 @@ class Process:
         total_results = pd.DataFrame()
 
         # modeling for each cluster
+        dict_models = dict()
         for key, value in df_clust.items():
-            results, df, lr, dt, rf = self.raw(df=value, data=key)
+            results, df, dict_models_cluster = self.raw(df=value, data=key)
             total_results = total_results.append(results, ignore_index=True)
+            dict_models.update(dict_models_cluster)
 
-        return total_results
+        return total_results, df, dict_models

@@ -1,13 +1,6 @@
 import pandas as pd
-import numpy as np
-import sidetable
-
-
 import preparation.analysis as analysis
 import preparation.encoding as encoding
-import prediction.standarize as standarize
-import prediction.normalize as normalize
-import prediction.models as models
 import prediction.launcher as launcher
 import time
 
@@ -34,65 +27,13 @@ print("\nTraduction of cut labeling :\n\n", traduction_cut)
 print("\nTraduction of clarity labeling :\n\n", traduction_clarity)
 
 
-# # CLUSTERING DATA
-# print("\nCLUSTERING DATA :\n")
-# unsupervised = models.Unsupervised(df)
-# df, clust_knn = unsupervised.clustering_knn(2)
-# df_clust = unsupervised.separate_df(df)
-# print('Number of clusters: ', len(df_clust))
-#
-# # cleaning the raw data
-# df.drop(columns="Cluster", inplace=True)
-#
-# # DataFrame where every result for each model and each cluster will be stored
-# total_results = pd.DataFrame()
-#
-# # modeling for each cluster
-# for key, value in df_clust.items():
-#
-#     print('\nSTANDARIZATION, NORMALIZATION and PREDICTING PROCESS for ', key)
-#
-#     # geting dataframe for each cluster
-#     df = value
-#
-#     # STANDARIZE PROCESS
-#     print("\nSTANDARIZE PROCESS :\n")
-#     stand = standarize.Stand(df, 'price')
-#     # df = stand.stand_stand_scaler()
-#     df = stand.stand_robust_scaler()
-#     # df = stand.stand_manual()
-#     print(df.columns)
-#
-#     # NORMALIZE PROCESS
-#     print("\nNORMALIZE PROCESS :\n")
-#     norm = normalize.Norm(df, 'price')
-#     # df, average, maximum, minimum = norm.manual()
-#     # df = norm.logarithm()
-#     # df = norm.root_square()
-#     df, model_fitted = norm.min_max_scaler()
-#     print(df.columns)
-#
-#     # PREDICTING PROCESS
-#     print("\nPREDICTING PROCESS :\n")
-#     supervised = models.Supervised(value)
-#     lr, dt, rf, results = supervised.all_models()
-#     results["Cluster"] = key
-#
-#     total_results = total_results.append(results, ignore_index=True)
-#
-#     # DESNORMALIZE PROCESS
-#     print("\nDESNORMALIZE PROCESS :\n")
-#     desnorm = normalize.DesNorm(df, 'price')
-#     # df = desnorm.manual(average, maximum, minimum)
-#     # df = desnorm.logarithm()
-#     # df = desnorm.root_square()
-#     df = desnorm.min_max_scaler(model_fitted)
-
+# LAUNCHING FITTING MODEL PROCESS
+print("\nLAUNCHING FITTING MODEL PROCESS :\n")
 process = launcher.Process(standarization='standard_scaler', normalizacion='min_max_scaler')
-# total_results, df, lr, dt, rf = process.raw(df)
-total_results = process.clustered_data(df)
-
+total_results, df_total, dict_models_total = process.raw(df)
+clusters_results, df_clusters, dict_models_clusters = process.clustered_data(df)
 
 print(total_results)
+print(clusters_results)
 
-print("--- %s minutes ---" % round((time.time() - start_time)/60,2))
+print("--- %s minutes ---" % round((time.time() - start_time)/60, 2))
