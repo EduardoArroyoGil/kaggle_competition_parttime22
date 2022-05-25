@@ -51,7 +51,7 @@ class Supervised:
         :param y_train: respond variable known by the train data set
         :param y_test_pred: respond variable predicted by the test data set
         :param y_train_pred: respond variable predicted by the train data set
-        :param model_type:the prediction model type is used (string)
+        :param model_type:the prediction_module model type is used (string)
         :return:this function returns the dataframe with all the errors (MAE - Mean Absolut Error
         , MSE - Mean Square Error and RMSE - root mean square error) and the R2 for test and
         train data sets

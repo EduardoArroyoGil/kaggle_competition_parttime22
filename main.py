@@ -1,7 +1,7 @@
 import pandas as pd
-import preparation.analysis as analysis
-import preparation.encoding as encoding
-import prediction.launcher as launcher
+import preparation_module.analysis as analysis
+import preparation_module.encoding as encoding
+import prediction_module.launcher as launcher
 import time
 
 

@@ -1,6 +1,6 @@
-import prediction.standarize as standarize
-import prediction.normalize as normalize
-import prediction.models as models
+import prediction_module.standarize as standarize
+import prediction_module.normalize as normalize
+import prediction_module.models as models
 import pandas as pd
 
 
@@ -16,7 +16,7 @@ class Process:
         '''
 
         :param df_raw: data frame used to calculate the predict model
-        :param data: the cluster of data you want to use to fit the prediction, total by default
+        :param data: the cluster of data you want to use to fit the prediction_module, total by default
         :return: this funcion returns the results of the models wihtin a dataframe called 'results', the data frame used
          in the preocess and the models of predictions.
         '''
