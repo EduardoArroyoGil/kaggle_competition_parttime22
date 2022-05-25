@@ -6,7 +6,7 @@ import pandas as pd
 
 class Process:
 
-    def __init__(self, standarization='standard_scaler', normalizacion='min_max_scaler'):
+    def __init__(self, standarization='None', normalizacion='None'):
         # nuestra clase va a recibir dos parámetros que son fijos a lo largo de toda la BBDD, el nombre de la BBDD y la contraseña con el servidor.
 
         self.standarization = standarization
