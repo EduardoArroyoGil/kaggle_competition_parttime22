@@ -32,6 +32,8 @@ class Supervised:
     def separate_set(self):
         '''
 
+        LAST COLUMN IS THE PREDICTED
+
         :return: return the data set separated by X (predictors) and Y (predictives) and train - test data sets
         '''
 
