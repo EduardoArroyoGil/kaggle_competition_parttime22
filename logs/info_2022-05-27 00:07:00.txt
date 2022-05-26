@@ -1,0 +1,59 @@
+DEBUG:root:EXPLORATORY DATA ANALYSIS :
+
+DEBUG:root:ENCODING PROCESS :
+
+DEBUG:root:LAUNCHING FITTING MODEL PROCESS :
+
+INFO:root:STANDARIZE PROCESS for total Data Frame:
+
+INFO:root:Standarize method: standard_scaler
+
+INFO:root:Index(['price', 'carat_ES_STANDARD', 'depth_ES_STANDARD', 'table_ES_STANDARD',
+       'feature_1_ES_STANDARD', 'feature_2_ES_STANDARD',
+       'color_encoded_ES_STANDARD', 'cut_encoded_ES_STANDARD',
+       'clarity_encoded_ES_STANDARD'],
+      dtype='object')
+INFO:root:NORMALIZE PROCESS for total Data Frame:
+
+INFO:root:Normalize method: None
+
+INFO:root:Index(['price', 'carat_ES_STANDARD', 'depth_ES_STANDARD', 'table_ES_STANDARD',
+       'feature_1_ES_STANDARD', 'feature_2_ES_STANDARD',
+       'color_encoded_ES_STANDARD', 'cut_encoded_ES_STANDARD',
+       'clarity_encoded_ES_STANDARD'],
+      dtype='object')
+INFO:root:columns of total DF to fit models encoded: Index(['carat_ES_STANDARD', 'depth_ES_STANDARD', 'table_ES_STANDARD',
+       'feature_1_ES_STANDARD', 'feature_2_ES_STANDARD',
+       'color_encoded_ES_STANDARD', 'cut_encoded_ES_STANDARD',
+       'clarity_encoded_ES_STANDARD', 'price'],
+      dtype='object')
+INFO:root:PREDICTING PROCESS for total Data Frame:
+
+INFO:root:Prediction Gradient Boost Regression algorithm finished
+INFO:root:DESNORMALIZE PROCESS for total Data Frame:
+
+INFO:root:Desnormalize method: None
+
+DEBUG:root:        MAE       MSE      RMSE        R2    set model Cluster
+0  0.036564  0.001814  0.042596  0.998161   test   gbr   total
+1  0.070942  0.009082  0.095299  0.991216  train   gbr   total
+DEBUG:root:GETTING BEST MODEL FOR EACH CLUSTER :
+
+INFO:root:The best model for total cluster data is: gbr
+
+DEBUG:root:ENCODING PROCESS FOR PREDICTION DATA SET:
+
+INFO:root:STANDARIZE PROCESS for total Data Frame:
+
+INFO:root:Standarize method: standard_scaler
+
+INFO:root:columns of DF to predict encoded: Index(['carat_ES_STANDARD', 'depth_ES_STANDARD', 'table_ES_STANDARD',
+       'feature_1_ES_STANDARD', 'feature_2_ES_STANDARD',
+       'color_encoded_ES_STANDARD', 'cut_encoded_ES_STANDARD',
+       'clarity_encoded_ES_STANDARD'],
+      dtype='object')
+DEBUG:root:prediction_2022-05-27 00:07:00.csv already saved
+
+DEBUG:root:delivery_prediction_2022-05-27 00:07:00.csv already saved
+
+DEBUG:root:--- 0.04 minutes ---
