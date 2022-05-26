@@ -61,7 +61,8 @@ for key, value in best_model.items():
 
     # ENCODING PROCESS
     logging.debug("ENCODING PROCESS FOR PREDICTION DATA SET:\n")
-    encode = encoding.Encode(df_test)
+    df_test_encoded = df_test.copy()
+    encode = encoding.Encode(df_test_encoded)
     df_test_encoded = encode.get_dummies_by_column('color')
     df_test_encoded, traduction_cut = encode.ordinalencoding('cut', ['Premium', 'Ideal', 'Very Good', 'Fair', 'Good'])
     df_test_encoded, traduction_clarity = encode.ordinalencoding('clarity', ['I1', 'SI2', 'SI1', 'VS2', 'VS1', 'VVS2', 'VVS1', 'IF'])
