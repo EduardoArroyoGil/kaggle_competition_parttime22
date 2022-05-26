@@ -1,0 +1,43 @@
+DEBUG:root:EXPLORATORY DATA ANALYSIS :
+
+DEBUG:root:ENCODING PROCESS :
+
+DEBUG:root:LAUNCHING FITTING MODEL PROCESS :
+
+INFO:root:STANDARIZE PROCESS for total Data Frame:
+
+INFO:root:Standarize method: None
+
+INFO:root:Index(['id', 'carat', 'depth', 'table', 'x', 'y', 'z', 'color_D', 'color_E',
+       'color_F', 'color_G', 'color_H', 'color_I', 'color_J', 'cut_encoded',
+       'clarity_encoded', 'price'],
+      dtype='object')
+INFO:root:NORMALIZE PROCESS for total Data Frame:
+
+INFO:root:Normalize method: None
+
+INFO:root:Index(['id', 'carat', 'depth', 'table', 'x', 'y', 'z', 'color_D', 'color_E',
+       'color_F', 'color_G', 'color_H', 'color_I', 'color_J', 'cut_encoded',
+       'clarity_encoded', 'price'],
+      dtype='object')
+INFO:root:PREDICTING PROCESS for total Data Frame:
+
+INFO:root:Prediction Linear Regression algorithm finished
+INFO:root:DESNORMALIZE PROCESS for total Data Frame:
+
+INFO:root:Desnormalize method: None
+
+DEBUG:root:        MAE       MSE      RMSE        R2    set model Cluster
+0  0.119108  0.023973  0.154833  0.976523   test    lr   total
+1  0.122539  0.038366  0.195873  0.962973  train    lr   total
+DEBUG:root:GETTING BEST MODEL FOR EACH CLUSTER :
+
+INFO:root:The best model for total cluster data is: lr
+
+DEBUG:root:ENCODING PROCESS FOR PREDICTION DATA SET:
+
+DEBUG:root:prediction_2022-05-26 15:43:28.csv already saved
+
+DEBUG:root:delivery_prediction_2022-05-26 15:43:28.csv already saved
+
+DEBUG:root:--- 0.01 minutes ---

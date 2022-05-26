@@ -243,30 +243,30 @@ class Supervised:
         dict_models = {}
         results = pd.DataFrame()
 
-        try:
-            lr, lr_results = self.linear()
-            logging.info('Prediction Linear Regression algorithm finished')
-            dict_models['lr'] = lr
-            results = results.append(lr_results, ignore_index=True)
-        except Exception as e:
-            logging.info(f"WARNING: Linear regression algorithm failed with error: {e}")
-            dict_models['lr'] = f"Linear regression algorithm failed with error: {e}"
-        try:
-            dt, dt_results, dt_importances = self.decission_tree()
-            logging.info('Prediction Decision Tree algorithm finished')
-            dict_models['dt'] = dt
-            results = results.append(dt_results, ignore_index=True)
-        except Exception as e:
-            logging.info(f"WARNING: Decision Tree algorithm failed with error: {e}")
-            dict_models['lr'] = f"Decision Tree algorithm failed with error: {e}"
-        try:
-            rf, rf_results, rf_importances = self.random_forest()
-            logging.info('Prediction Random Forest algorithm finished')
-            dict_models['rf'] = rf
-            results = results.append(rf_results, ignore_index=True)
-        except Exception as e:
-            logging.info(f"WARNING: Random Forest algorithm failed with error: {e}")
-            dict_models['lr'] = f"Random Forest algorithm failed with error: {e}"
+        models_disp = {
+                  'lr': self.linear(),
+                  'dt': self.decission_tree(),
+                  'rf': self.random_forest(),
+        }
+
+        model_names = {
+            'lr': 'Linear Regression',
+            'dt': 'Decision Tree',
+            'rf': 'Random Forest',
+        }
+
+        for key, value in models_disp.items():
+            model_alias = key
+            model_fitted = value
+            model_name = model_names[model_alias]
+            try:
+                model, model_results = model_fitted
+                logging.info(f'Prediction {model_name} algorithm finished')
+                dict_models[model_alias] = model
+                results = results.append(model_results, ignore_index=True)
+            except Exception as e:
+                logging.info(f"WARNING: {model_name} algorithm failed with error: {e}")
+                dict_models[model_alias] = f"{model_name} algorithm failed with error: {e}"
 
         return dict_models, results
 

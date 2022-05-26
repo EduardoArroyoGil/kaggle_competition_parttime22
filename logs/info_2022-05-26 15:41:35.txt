@@ -1,0 +1,24 @@
+DEBUG:root:EXPLORATORY DATA ANALYSIS :
+
+DEBUG:root:ENCODING PROCESS :
+
+DEBUG:root:LAUNCHING FITTING MODEL PROCESS :
+
+INFO:root:STANDARIZE PROCESS for total Data Frame:
+
+INFO:root:Standarize method: None
+
+INFO:root:Index(['id', 'carat', 'depth', 'table', 'x', 'y', 'z', 'color_D', 'color_E',
+       'color_F', 'color_G', 'color_H', 'color_I', 'color_J', 'cut_encoded',
+       'clarity_encoded', 'price'],
+      dtype='object')
+INFO:root:NORMALIZE PROCESS for total Data Frame:
+
+INFO:root:Normalize method: None
+
+INFO:root:Index(['id', 'carat', 'depth', 'table', 'x', 'y', 'z', 'color_D', 'color_E',
+       'color_F', 'color_G', 'color_H', 'color_I', 'color_J', 'cut_encoded',
+       'clarity_encoded', 'price'],
+      dtype='object')
+INFO:root:PREDICTING PROCESS for total Data Frame:
+
