@@ -1,6 +1,7 @@
 import prediction_module.standarize as standarize
 import prediction_module.normalize as normalize
 import prediction_module.models as models
+import preparation_module.encoding as encoding
 import pandas as pd
 import logging
 
@@ -126,3 +127,44 @@ class Process:
             dict_models.update(dict_models_cluster)
 
         return total_results, df, dict_models
+
+    def predict(self, df_to_predict, best_model, all_models):
+        '''
+
+        :param df_to_predict:
+        :param best_model:
+        :param all_models:
+        :return:
+        '''
+
+        df_prediction = pd.DataFrame()
+        df_prediction_delivery = pd.DataFrame()
+        for key, value in best_model.items():
+            cluster = key
+            model_type = value
+
+            model_cluster = all_models[cluster][model_type]
+
+            # ENCODING PROCESS
+            logging.debug("ENCODING PROCESS FOR PREDICTION DATA SET:\n")
+            df_test_encoded = df_to_predict.copy()
+            encode = encoding.Encode(df_test_encoded)
+            df_test_encoded = encode.get_dummies_by_column('color')
+            df_test_encoded, traduction_cut = encode.ordinalencoding('cut',
+                                                                     ['Premium', 'Ideal', 'Very Good', 'Fair', 'Good'])
+            df_test_encoded, traduction_clarity = encode.ordinalencoding('clarity',
+                                                                         ['I1', 'SI2', 'SI1', 'VS2', 'VS1', 'VVS2',
+                                                                          'VVS1', 'IF'])
+
+            # predicting
+            prediction_cluster = model_cluster.predict(df_test_encoded)
+            df_prediction_cluster = pd.DataFrame({'price': prediction_cluster})
+
+            # creating dataframes of results expected
+            df_data_predicted_cluster = pd.concat([df_to_predict, df_prediction_cluster], axis=1)
+            df_prediction = df_prediction.append(df_data_predicted_cluster, ignore_index=True)
+
+            df_delivery_predicted_cluster = pd.concat([df_to_predict['id'], df_prediction_cluster], axis=1)
+            df_prediction_delivery = df_prediction_delivery.append(df_delivery_predicted_cluster, ignore_index=True)
+
+        return df_prediction, df_prediction_delivery
