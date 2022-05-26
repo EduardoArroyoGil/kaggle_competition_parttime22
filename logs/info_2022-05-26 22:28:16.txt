@@ -1,0 +1,53 @@
+DEBUG:root:EXPLORATORY DATA ANALYSIS :
+
+DEBUG:root:ENCODING PROCESS :
+
+DEBUG:root:LAUNCHING FITTING MODEL PROCESS :
+
+INFO:root:STANDARIZE PROCESS for total Data Frame:
+
+INFO:root:Standarize method: robust_scaler
+
+INFO:root:Index(['price', 'id_ES_ROBUST', 'carat_ES_ROBUST', 'depth_ES_ROBUST',
+       'table_ES_ROBUST', 'x_ES_ROBUST', 'y_ES_ROBUST', 'z_ES_ROBUST',
+       'color_encoded_ES_ROBUST', 'cut_encoded_ES_ROBUST',
+       'clarity_encoded_ES_ROBUST'],
+      dtype='object')
+INFO:root:NORMALIZE PROCESS for total Data Frame:
+
+INFO:root:Normalize method: None
+
+INFO:root:Index(['price', 'id_ES_ROBUST', 'carat_ES_ROBUST', 'depth_ES_ROBUST',
+       'table_ES_ROBUST', 'x_ES_ROBUST', 'y_ES_ROBUST', 'z_ES_ROBUST',
+       'color_encoded_ES_ROBUST', 'cut_encoded_ES_ROBUST',
+       'clarity_encoded_ES_ROBUST'],
+      dtype='object')
+INFO:root:PREDICTING PROCESS for total Data Frame:
+
+INFO:root:Prediction Gradient Boost Regression algorithm finished
+INFO:root:DESNORMALIZE PROCESS for total Data Frame:
+
+INFO:root:Desnormalize method: None
+
+DEBUG:root:        MAE       MSE      RMSE        R2    set model Cluster
+0  0.361769  0.210260  0.458542  0.679520   test   gbr   total
+1  0.362517  0.213194  0.461730  0.687149  train   gbr   total
+DEBUG:root:GETTING BEST MODEL FOR EACH CLUSTER :
+
+INFO:root:The best model for total cluster data is: gbr
+
+DEBUG:root:ENCODING PROCESS FOR PREDICTION DATA SET:
+
+INFO:root:STANDARIZE PROCESS for total Data Frame:
+
+INFO:root:Standarize method: robust_scaler
+
+INFO:root:columns of DF to predict encoded: Index(['id_ES_ROBUST', 'carat_ES_ROBUST', 'depth_ES_ROBUST', 'table_ES_ROBUST',
+       'x_ES_ROBUST', 'y_ES_ROBUST', 'z_ES_ROBUST', 'color_encoded_ES_ROBUST',
+       'cut_encoded_ES_ROBUST', 'clarity_encoded_ES_ROBUST'],
+      dtype='object')
+DEBUG:root:prediction_2022-05-26 22:28:16.csv already saved
+
+DEBUG:root:delivery_prediction_2022-05-26 22:28:16.csv already saved
+
+DEBUG:root:--- 0.07 minutes ---

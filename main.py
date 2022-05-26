@@ -16,9 +16,20 @@ logging.basicConfig(filename=f'logs/info_{ct}.txt', level=logging.DEBUG)
 # starting time to measure timings
 start_time = time.time()
 
+# starting method utils
+util = utils.Utils()
+
 # DATA INGESTION
 df = pd.read_csv("data/train.csv")
 df_test = pd.read_csv("data/test.csv")
+
+# df for the final delivery of the competition
+df_predict_id = df_test['id']
+
+# dropping id columns
+columns_drop = ['id']
+df.drop(columns=columns_drop, inplace=True)
+df_test.drop(columns=columns_drop, inplace=True)
 
 # EXPLORATORY DATA ANALYSIS
 logging.debug("EXPLORATORY DATA ANALYSIS :\n")
@@ -28,7 +39,8 @@ eda.total_eda()
 # ENCODING PROCESS
 logging.debug("ENCODING PROCESS :\n")
 encode = encoding.Encode(df)
-df = encode.get_dummies_by_column('color')
+# df = encode.get_dummies_by_column('color')
+df, traduction_color = encode.ordinalencoding('color', ['D', 'E', 'F', 'G', 'H', 'I', 'J'])
 df, traduction_cut = encode.ordinalencoding('cut', ['Premium', 'Ideal', 'Very Good', 'Fair', 'Good'])
 df, traduction_clarity = encode.ordinalencoding('clarity', ['I1', 'SI2', 'SI1', 'VS2', 'VS1', 'VVS2', 'VVS1', 'IF'])
 
@@ -37,26 +49,26 @@ logging.info("Traduction of cut labeling :\n", traduction_cut)
 logging.info("Traduction of clarity labeling :\n", traduction_clarity)
 
 # ensuring column 'price' is in the end of dataframe
-df_end = df.pop('price')
-df['price'] = df_end
+df = util.move_price_to_end(df)
 
 # LAUNCHING FITTING MODEL PROCESS
 logging.debug("LAUNCHING FITTING MODEL PROCESS :\n")
-process = launcher.Process(standarization='None', normalizacion='None')
+process = launcher.Process(standarization='robust_scaler', normalizacion='None')
 total_results, df_total, dict_models_total = process.raw(df)
 
 logging.debug(total_results)
 
 # GETTING BEST MODEL FOR EACH CLUSTER
 logging.debug("GETTING BEST MODEL FOR EACH CLUSTER :\n")
-util = utils.Utils()
 best_model = util.get_best_model(total_results)
 for key, value in best_model.items():
     logging.info(f"The best model for {key} cluster data is: {value}\n")
 
 # PREDICTING PROCESS
 df_prediction, df_prediction_delivery = process.predict(df_to_predict=df_test,
-                                                        best_model=best_model, all_models=dict_models_total)
+                                                        best_model=best_model,
+                                                        all_models=dict_models_total,
+                                                        delivery_id=df_predict_id)
 
 # SAVING RESULTS OF PREDICTION
 df_prediction.to_csv(f"result_prediction/prediction_{ct}.csv", index=False)

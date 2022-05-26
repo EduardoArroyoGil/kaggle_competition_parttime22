@@ -22,7 +22,8 @@ class Stand:
         # ajustamos nuestros datos
         columns_df = list(self.df.columns)
         columns_standard = columns_df
-        columns_standard.remove(self.predicted)
+        if self.predicted in self.df.columns:
+            columns_standard.remove(self.predicted)
 
         columns_standard_renamed = columns_standard.copy()
         counter = 0
@@ -52,7 +53,8 @@ class Stand:
         # ajustamos nuestros datos
         columns_df = list(self.df.columns)
         columns_standard = columns_df
-        columns_standard.remove(self.predicted)
+        if self.predicted in self.df.columns:
+            columns_standard.remove(self.predicted)
 
         columns_standard_renamed = columns_standard.copy()
         counter = 0
@@ -79,7 +81,8 @@ class Stand:
 
         columns_df = list(self.df.columns)
         columns_standard = columns_df
-        columns_standard.remove(self.predicted)
+        if self.predicted in self.df.columns:
+            columns_standard.remove(self.predicted)
 
         columns_standard_renamed = columns_standard.copy()
         counter = 0

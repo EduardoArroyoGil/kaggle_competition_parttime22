@@ -4,6 +4,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.model_selection import GridSearchCV
 from sklearn import metrics
+from sklearn import ensemble
 
 # Cluster Modeling
 # ==============================================================================
@@ -233,6 +234,22 @@ class Supervised:
 
         return bos, rf_results, predictors_importance
 
+    def gboostreg(self):
+
+        X_train, X_test, y_train, y_test = self.separate_set()
+
+        gbr = ensemble.GradientBoostingRegressor()
+        gbr.fit(X_train, y_train)
+
+        # hacemos las predicciones sobre los dos set de datos el X_test y el X_train
+        y_pred_test = gbr.predict(X_test)
+        y_pred_train = gbr.predict(X_train)
+
+        gbr_results = self.metrics(y_test, y_train, y_pred_test, y_pred_train, 'gbr')
+
+        return gbr, gbr_results
+
+
     def all_models(self):
         '''
 
@@ -244,15 +261,17 @@ class Supervised:
         results = pd.DataFrame()
 
         models_disp = {
-                  'lr': self.linear(),
-                  'dt': self.decission_tree(),
-                  'rf': self.random_forest(),
+                  # 'lr': self.linear(),
+                  # 'dt': self.decission_tree(),
+                  # 'rf': self.random_forest(),
+                  'gbr': self.gboostreg(),
         }
 
         model_names = {
             'lr': 'Linear Regression',
             'dt': 'Decision Tree',
             'rf': 'Random Forest',
+            'gbr': 'Gradient Boost Regression',
         }
 
         for key, value in models_disp.items():

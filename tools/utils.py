@@ -31,3 +31,17 @@ class Utils:
             best_model[i] = str(df['model'].iloc[0])
 
         return best_model
+
+    def move_price_to_end(self, df):
+        '''
+
+        :param df: df
+        :return: ensuring column 'price' is in the end of dataframe
+        '''
+
+        # ensuring column 'price' is in the end of dataframe
+        if 'price' in df.columns:
+            df_end = df.pop('price')
+            df['price'] = df_end
+
+        return df

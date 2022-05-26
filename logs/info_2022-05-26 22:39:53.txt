@@ -1,0 +1,50 @@
+DEBUG:root:EXPLORATORY DATA ANALYSIS :
+
+DEBUG:root:ENCODING PROCESS :
+
+DEBUG:root:LAUNCHING FITTING MODEL PROCESS :
+
+INFO:root:STANDARIZE PROCESS for total Data Frame:
+
+INFO:root:Standarize method: robust_scaler
+
+INFO:root:Index(['price', 'carat_ES_ROBUST', 'depth_ES_ROBUST', 'table_ES_ROBUST',
+       'x_ES_ROBUST', 'y_ES_ROBUST', 'z_ES_ROBUST', 'color_encoded_ES_ROBUST',
+       'cut_encoded_ES_ROBUST', 'clarity_encoded_ES_ROBUST'],
+      dtype='object')
+INFO:root:NORMALIZE PROCESS for total Data Frame:
+
+INFO:root:Normalize method: None
+
+INFO:root:Index(['price', 'carat_ES_ROBUST', 'depth_ES_ROBUST', 'table_ES_ROBUST',
+       'x_ES_ROBUST', 'y_ES_ROBUST', 'z_ES_ROBUST', 'color_encoded_ES_ROBUST',
+       'cut_encoded_ES_ROBUST', 'clarity_encoded_ES_ROBUST'],
+      dtype='object')
+INFO:root:columns of total DF to fit models encoded: Index(['carat_ES_ROBUST', 'depth_ES_ROBUST', 'table_ES_ROBUST', 'x_ES_ROBUST',
+       'y_ES_ROBUST', 'z_ES_ROBUST', 'color_encoded_ES_ROBUST',
+       'cut_encoded_ES_ROBUST', 'clarity_encoded_ES_ROBUST', 'price'],
+      dtype='object')
+INFO:root:PREDICTING PROCESS for total Data Frame:
+
+INFO:root:Prediction Gradient Boost Regression algorithm finished
+INFO:root:DESNORMALIZE PROCESS for total Data Frame:
+
+INFO:root:Desnormalize method: None
+
+DEBUG:root:        MAE       MSE      RMSE        R2    set model Cluster
+0  0.080455  0.011056  0.105149  0.989173   test   gbr   total
+1  0.081313  0.011103  0.105372  0.989284  train   gbr   total
+DEBUG:root:GETTING BEST MODEL FOR EACH CLUSTER :
+
+INFO:root:The best model for total cluster data is: gbr
+
+DEBUG:root:ENCODING PROCESS FOR PREDICTION DATA SET:
+
+INFO:root:STANDARIZE PROCESS for total Data Frame:
+
+INFO:root:Standarize method: robust_scaler
+
+INFO:root:columns of DF to predict encoded: Index(['carat_ES_ROBUST', 'depth_ES_ROBUST', 'table_ES_ROBUST', 'x_ES_ROBUST',
+       'y_ES_ROBUST', 'z_ES_ROBUST', 'color_encoded_ES_ROBUST',
+       'cut_encoded_ES_ROBUST', 'clarity_encoded_ES_ROBUST'],
+      dtype='object')
