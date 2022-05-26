@@ -26,7 +26,8 @@ class Process:
         normalization = self.normalization
 
         # STANDARIZE PROCESS
-        logging.info(f"\nSTANDARIZE PROCESS for {data} Data Frame:\n")
+        logging.info(f"STANDARIZE PROCESS for {data} Data Frame:\n")
+        logging.info(f"Standarize method: {standarization}\n")
 
         # init of standarize method
         stand = standarize.Stand(df, 'price')
@@ -43,7 +44,8 @@ class Process:
         logging.info(df.columns)
 
         # NORMALIZE PROCESS
-        logging.info(f"\nNORMALIZE PROCESS for {data} Data Frame:\n")
+        logging.info(f"NORMALIZE PROCESS for {data} Data Frame:\n")
+        logging.info(f"Normalize method: {normalization}\n")
 
         # init of normalize method
         norm = normalize.Norm(df, 'price')
@@ -62,13 +64,14 @@ class Process:
         logging.info(df.columns)
 
         # PREDICTING PROCESS
-        logging.info(f"\nPREDICTING PROCESS for {data} Data Frame:\n")
+        logging.info(f"PREDICTING PROCESS for {data} Data Frame:\n")
         supervised = models.Supervised(df)
         all_models, results = supervised.all_models()
         results["Cluster"] = data
 
         # DESNORMALIZE PROCESS
-        logging.info(f"\nDESNORMALIZE PROCESS for {data} Data Frame:\n")
+        logging.info(f"DESNORMALIZE PROCESS for {data} Data Frame:\n")
+        logging.info(f"Desnormalize method: {normalization}\n")
 
         # init of desnormalize method
         desnorm = normalize.DesNorm(df, 'price')
@@ -102,7 +105,8 @@ class Process:
         df = df_to_cluster
 
         # CLUSTERING DATA
-        logging.info("\nCLUSTERING DATA :\n")
+        logging.info("CLUSTERING DATA :\n")
+        logging.info(f"Number of clusters :{number_clusters}\n")
         unsupervised = models.Unsupervised(df)
         df, clust_knn = unsupervised.clustering_knn(number_clusters)
         df_clust = unsupervised.separate_df(df)

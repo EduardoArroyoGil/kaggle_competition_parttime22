@@ -1,0 +1,43 @@
+DEBUG:root:EXPLORATORY DATA ANALYSIS :
+
+DEBUG:root:ENCODING PROCESS :
+
+DEBUG:root:LAUNCHING FITTING MODEL PROCESS :
+
+INFO:root:STANDARIZE PROCESS for total Data Frame:
+
+INFO:root:Standarize method: None
+
+INFO:root:Index(['id', 'carat', 'depth', 'table', 'x', 'y', 'z', 'price', 'color_D',
+       'color_E', 'color_F', 'color_G', 'color_H', 'color_I', 'color_J',
+       'cut_encoded', 'clarity_encoded'],
+      dtype='object')
+INFO:root:NORMALIZE PROCESS for total Data Frame:
+
+INFO:root:Normalize method: None
+
+INFO:root:Index(['id', 'carat', 'depth', 'table', 'x', 'y', 'z', 'price', 'color_D',
+       'color_E', 'color_F', 'color_G', 'color_H', 'color_I', 'color_J',
+       'cut_encoded', 'clarity_encoded'],
+      dtype='object')
+INFO:root:PREDICTING PROCESS for total Data Frame:
+
+INFO:root:Prediction Linear Regression algorithm finished
+INFO:root:Prediction Decision Tree algorithm finished
+INFO:root:Prediction Random Forest algorithm finished
+INFO:root:DESNORMALIZE PROCESS for total Data Frame:
+
+INFO:root:Desnormalize method: None
+
+DEBUG:root:        MAE       MSE      RMSE        R2    set              model Cluster
+0  0.788851  0.979076  0.989483  0.626922   test  linear regression   total
+1  0.807306  1.239145  1.113169  0.545406  train  linear regression   total
+2  1.026707  1.701753  1.304513  0.351545   test      decision tree   total
+3  1.045221  1.768370  1.329801  0.351253  train      decision tree   total
+4  0.968580  1.441634  1.200681  0.450663   test      Random Forest   total
+5  0.974653  1.466925  1.211167  0.461842  train      Random Forest   total
+DEBUG:root:GETTING BEST MODEL FOR EACH CLUSTER :
+
+INFO:root:The best model for total cluster data is: decision tree
+
+DEBUG:root:--- 12.98 minutes ---

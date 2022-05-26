@@ -32,3 +32,15 @@ PREDICTING PROCESS for total Data Frame:
 
 INFO:root:Prediction Linear Regression algorithm finished
 INFO:root:Prediction Decision Tree algorithm finished
+INFO:root:Prediction Random Forest algorithm finished
+INFO:root:
+DESNORMALIZE PROCESS for total Data Frame:
+
+DEBUG:root:        MAE       MSE      RMSE        R2    set              model Cluster
+0  0.029373  0.001458  0.038183  0.976523   test  linear regression   total
+1  0.030219  0.002333  0.048304  0.962973  train  linear regression   total
+0  0.046251  0.003610  0.060087  0.941864   test      decision tree   total
+1  0.046856  0.003653  0.060443  0.942024  train      decision tree   total
+0  0.034755  0.002000  0.044720  0.967797   test      Random Forest   total
+1  0.035209  0.002051  0.045288  0.967453  train      Random Forest   total
+DEBUG:root:--- 7.76 minutes ---

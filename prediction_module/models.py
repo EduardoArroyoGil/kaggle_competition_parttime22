@@ -239,11 +239,13 @@ class Supervised:
         '''
 
         dict_models = {}
+        results = pd.DataFrame()
 
         try:
             lr, lr_results = self.linear()
             logging.info('Prediction Linear Regression algorithm finished')
             dict_models['lr'] = lr
+            results = results.append(lr_results, ignore_index=True)
         except Exception as e:
             logging.info(f"WARNING: Linear regression algorithm failed with error: {e}")
             dict_models['lr'] = f"Linear regression algorithm failed with error: {e}"
@@ -251,6 +253,7 @@ class Supervised:
             dt, dt_results, dt_importances = self.decission_tree()
             logging.info('Prediction Decision Tree algorithm finished')
             dict_models['dt'] = dt
+            results = results.append(dt_results, ignore_index=True)
         except Exception as e:
             logging.info(f"WARNING: Decision Tree algorithm failed with error: {e}")
             dict_models['lr'] = f"Decision Tree algorithm failed with error: {e}"
@@ -258,11 +261,10 @@ class Supervised:
             rf, rf_results, rf_importances = self.random_forest()
             logging.info('Prediction Random Forest algorithm finished')
             dict_models['rf'] = rf
+            results = results.append(rf_results, ignore_index=True)
         except Exception as e:
             logging.info(f"WARNING: Random Forest algorithm failed with error: {e}")
             dict_models['lr'] = f"Random Forest algorithm failed with error: {e}"
-
-        results = pd.concat([lr_results, dt_results, rf_results], axis=0)
 
         return dict_models, results
 
