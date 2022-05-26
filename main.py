@@ -26,8 +26,13 @@ df_test = pd.read_csv("data/test.csv")
 # df for the final delivery of the competition
 df_predict_id = df_test['id']
 
+# FEATURE ENGINEERING
+# creating new features
+df['feature_1'] = df['x'] - df['y']
+df_test['feature_1'] = df_test['x'] - df_test['y']
+
 # dropping id columns
-columns_drop = ['id', 'y']
+columns_drop = ['id', 'y', 'x']
 df.drop(columns=columns_drop, inplace=True)
 df_test.drop(columns=columns_drop, inplace=True)
 
