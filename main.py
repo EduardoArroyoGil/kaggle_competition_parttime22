@@ -27,7 +27,7 @@ df_test = pd.read_csv("data/test.csv")
 df_predict_id = df_test['id']
 
 # dropping id columns
-columns_drop = ['id']
+columns_drop = ['id', 'y']
 df.drop(columns=columns_drop, inplace=True)
 df_test.drop(columns=columns_drop, inplace=True)
 
@@ -53,7 +53,7 @@ df = util.move_price_to_end(df)
 
 # LAUNCHING FITTING MODEL PROCESS
 logging.debug("LAUNCHING FITTING MODEL PROCESS :\n")
-process = launcher.Process(standarization='robust_scaler', normalizacion='None')
+process = launcher.Process(standarization='standard_scaler', normalizacion='None')
 total_results, df_total, dict_models_total = process.raw(df)
 
 logging.debug(total_results)

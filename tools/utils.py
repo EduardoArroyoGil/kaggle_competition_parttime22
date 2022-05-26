@@ -15,7 +15,7 @@ class Utils:
 
         columns_order = ['RMSE', 'Cluster']
 
-        condition_test = df['set'] == 'test'
+        condition_test = (df['set'] == 'test')
 
         clusters = df['Cluster'].unique()
 
@@ -23,7 +23,7 @@ class Utils:
 
         for i in clusters:
 
-            condition_cluster = df['Cluster'] == i
+            condition_cluster = (df['Cluster'] == i)
 
             df = df[condition_test & condition_cluster]
             df = df.sort_values(by=columns_order, ascending=False, inplace=False)
