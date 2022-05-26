@@ -87,7 +87,7 @@ class Supervised:
         y_pred_test = lr.predict(X_test)
         y_pred_train = lr.predict(X_train)
 
-        lr_results = self.metrics(y_test, y_train, y_pred_test, y_pred_train, 'linear regression')
+        lr_results = self.metrics(y_test, y_train, y_pred_test, y_pred_train, 'lr')
 
         return lr, lr_results
 
@@ -152,7 +152,7 @@ class Supervised:
         y_pred_train = best_tree.predict(X_train)
 
         # Results of the accuracy of Decision tree adjust by greedsearch
-        dt_results = self.metrics(y_test, y_train, y_pred_test, y_pred_train, 'decision tree')
+        dt_results = self.metrics(y_test, y_train, y_pred_test, y_pred_train, 'dt')
 
         predictors_importance = pd.DataFrame(
             {'predictor': X_train.columns,
@@ -222,7 +222,7 @@ class Supervised:
         y_pred_train = bos.predict(X_train)
 
         # Results of the accuracy of Decision tree adjust by greedsearch
-        rf_results = self.metrics(y_test, y_train, y_pred_test, y_pred_train, "Random Forest")
+        rf_results = self.metrics(y_test, y_train, y_pred_test, y_pred_train, "rf")
 
         predictors_importance = pd.DataFrame(
             {'predictor': X_train.columns,
