@@ -8,7 +8,7 @@ import time
 start_time = time.time()
 
 # DATA INGESTION
-df = pd.read_csv("train.csv")
+df = pd.read_csv("data/train.csv")
 
 # EXPLORATORY DATA ANALYSIS
 print("\nEXPLORATORY DATA ANALYSIS :\n")
