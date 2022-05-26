@@ -1,0 +1,47 @@
+DEBUG:root:EXPLORATORY DATA ANALYSIS :
+
+DEBUG:root:ENCODING PROCESS :
+
+DEBUG:root:LAUNCHING FITTING MODEL PROCESS :
+
+INFO:root:STANDARIZE PROCESS for total Data Frame:
+
+INFO:root:Standarize method: None
+
+INFO:root:Index(['id', 'carat', 'depth', 'table', 'x', 'y', 'z', 'price', 'color_D',
+       'color_E', 'color_F', 'color_G', 'color_H', 'color_I', 'color_J',
+       'cut_encoded', 'clarity_encoded'],
+      dtype='object')
+INFO:root:NORMALIZE PROCESS for total Data Frame:
+
+INFO:root:Normalize method: None
+
+INFO:root:Index(['id', 'carat', 'depth', 'table', 'x', 'y', 'z', 'price', 'color_D',
+       'color_E', 'color_F', 'color_G', 'color_H', 'color_I', 'color_J',
+       'cut_encoded', 'clarity_encoded'],
+      dtype='object')
+INFO:root:PREDICTING PROCESS for total Data Frame:
+
+INFO:root:Prediction Linear Regression algorithm finished
+INFO:root:Prediction Decision Tree algorithm finished
+INFO:root:Prediction Random Forest algorithm finished
+INFO:root:DESNORMALIZE PROCESS for total Data Frame:
+
+INFO:root:Desnormalize method: None
+
+DEBUG:root:        MAE       MSE      RMSE        R2    set model Cluster
+0  0.788851  0.979076  0.989483  0.626922   test    lr   total
+1  0.807306  1.239145  1.113169  0.545406  train    lr   total
+2  0.989780  1.507089  1.227636  0.425722   test    dt   total
+3  0.995800  1.544509  1.242783  0.433379  train    dt   total
+4  0.968109  1.438146  1.199227  0.451993   test    rf   total
+5  0.976109  1.470065  1.212462  0.460690  train    rf   total
+DEBUG:root:GETTING BEST MODEL FOR EACH CLUSTER :
+
+INFO:root:The best model for total cluster data is: dt
+
+DEBUG:root:ENCODING PROCESS FOR PREDICTION DATA SET:
+
+DEBUG:root:prediction_2022-05-26 11:42:37.csv already saved
+
+DEBUG:root:--- 7.75 minutes ---
