@@ -2,6 +2,7 @@ import prediction_module.standarize as standarize
 import prediction_module.normalize as normalize
 import prediction_module.models as models
 import pandas as pd
+import logging
 
 
 class Process:
@@ -25,7 +26,7 @@ class Process:
         normalization = self.normalization
 
         # STANDARIZE PROCESS
-        print(f"\nSTANDARIZE PROCESS for {data} Data Frame:\n")
+        logging.info(f"\nSTANDARIZE PROCESS for {data} Data Frame:\n")
 
         # init of standarize method
         stand = standarize.Stand(df, 'price')
@@ -39,10 +40,10 @@ class Process:
             df = stand.stand_manual()
         elif standarization == 'None':
             pass
-        print(df.columns)
+        logging.info(df.columns)
 
         # NORMALIZE PROCESS
-        print(f"\nNORMALIZE PROCESS for {data} Data Frame:\n")
+        logging.info(f"\nNORMALIZE PROCESS for {data} Data Frame:\n")
 
         # init of normalize method
         norm = normalize.Norm(df, 'price')
@@ -58,16 +59,16 @@ class Process:
             df, model_fitted = norm.min_max_scaler()
         elif normalization == 'None':
             pass
-        print(df.columns)
+        logging.info(df.columns)
 
         # PREDICTING PROCESS
-        print(f"\nPREDICTING PROCESS for {data} Data Frame:\n")
+        logging.info(f"\nPREDICTING PROCESS for {data} Data Frame:\n")
         supervised = models.Supervised(df)
         all_models, results = supervised.all_models()
         results["Cluster"] = data
 
         # DESNORMALIZE PROCESS
-        print(f"\nDESNORMALIZE PROCESS for {data} Data Frame:\n")
+        logging.info(f"\nDESNORMALIZE PROCESS for {data} Data Frame:\n")
 
         # init of desnormalize method
         desnorm = normalize.DesNorm(df, 'price')
@@ -101,11 +102,11 @@ class Process:
         df = df_to_cluster
 
         # CLUSTERING DATA
-        print("\nCLUSTERING DATA :\n")
+        logging.info("\nCLUSTERING DATA :\n")
         unsupervised = models.Unsupervised(df)
         df, clust_knn = unsupervised.clustering_knn(number_clusters)
         df_clust = unsupervised.separate_df(df)
-        print('Number of clusters: ', len(df_clust))
+        logging.info('Number of clusters: ', len(df_clust))
 
         # cleaning the raw data
         df.drop(columns="Cluster", inplace=True)

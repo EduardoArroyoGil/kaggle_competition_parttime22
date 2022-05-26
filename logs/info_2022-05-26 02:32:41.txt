@@ -1,0 +1,34 @@
+DEBUG:root:
+EXPLORATORY DATA ANALYSIS :
+
+DEBUG:root:
+ENCODING PROCESS :
+
+DEBUG:root:
+LAUNCHING FITTING MODEL PROCESS :
+
+INFO:root:
+STANDARIZE PROCESS for total Data Frame:
+
+INFO:root:Index(['price', 'id_ES_STANDARD', 'carat_ES_STANDARD', 'depth_ES_STANDARD',
+       'table_ES_STANDARD', 'x_ES_STANDARD', 'y_ES_STANDARD', 'z_ES_STANDARD',
+       'color_D_ES_STANDARD', 'color_E_ES_STANDARD', 'color_F_ES_STANDARD',
+       'color_G_ES_STANDARD', 'color_H_ES_STANDARD', 'color_I_ES_STANDARD',
+       'color_J_ES_STANDARD', 'cut_encoded_ES_STANDARD',
+       'clarity_encoded_ES_STANDARD'],
+      dtype='object')
+INFO:root:
+NORMALIZE PROCESS for total Data Frame:
+
+INFO:root:Index(['id_ES_STANDARD', 'carat_ES_STANDARD', 'depth_ES_STANDARD',
+       'table_ES_STANDARD', 'x_ES_STANDARD', 'y_ES_STANDARD', 'z_ES_STANDARD',
+       'color_D_ES_STANDARD', 'color_E_ES_STANDARD', 'color_F_ES_STANDARD',
+       'color_G_ES_STANDARD', 'color_H_ES_STANDARD', 'color_I_ES_STANDARD',
+       'color_J_ES_STANDARD', 'cut_encoded_ES_STANDARD',
+       'clarity_encoded_ES_STANDARD', 'price_NORM_MIXMAXSCALER'],
+      dtype='object')
+INFO:root:
+PREDICTING PROCESS for total Data Frame:
+
+INFO:root:Prediction Linear Regression algorithm finished
+INFO:root:Prediction Decision Tree algorithm finished

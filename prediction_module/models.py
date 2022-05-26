@@ -20,6 +20,7 @@ import pandas as pd
 import numpy as np
 import os
 import math
+import logging
 
 
 class Supervised:
@@ -241,24 +242,24 @@ class Supervised:
 
         try:
             lr, lr_results = self.linear()
-            print('Prediction Linear Regression algorithm finished')
+            logging.info('Prediction Linear Regression algorithm finished')
             dict_models['lr'] = lr
         except Exception as e:
-            print(f"WARNING: Linear regression algorithm failed with error: {e}")
+            logging.info(f"WARNING: Linear regression algorithm failed with error: {e}")
             dict_models['lr'] = f"Linear regression algorithm failed with error: {e}"
         try:
             dt, dt_results, dt_importances = self.decission_tree()
-            print('Prediction Decision Tree algorithm finished')
+            logging.info('Prediction Decision Tree algorithm finished')
             dict_models['dt'] = dt
         except Exception as e:
-            print(f"WARNING: Decision Tree algorithm failed with error: {e}")
+            logging.info(f"WARNING: Decision Tree algorithm failed with error: {e}")
             dict_models['lr'] = f"Decision Tree algorithm failed with error: {e}"
         try:
             rf, rf_results, rf_importances = self.random_forest()
-            print('Prediction Random Forest algorithm finished')
+            logging.info('Prediction Random Forest algorithm finished')
             dict_models['rf'] = rf
         except Exception as e:
-            print(f"WARNING: Random Forest algorithm failed with error: {e}")
+            logging.info(f"WARNING: Random Forest algorithm failed with error: {e}")
             dict_models['lr'] = f"Random Forest algorithm failed with error: {e}"
 
         results = pd.concat([lr_results, dt_results, rf_results], axis=0)

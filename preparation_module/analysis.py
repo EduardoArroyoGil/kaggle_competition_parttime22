@@ -1,3 +1,4 @@
+import logging
 
 
 class Eda:
@@ -7,22 +8,22 @@ class Eda:
         self.df = df
 
     def shapeOf(self):
-        print('\nCuantas filas y columnas tenemos \n', self.df.shape, '\n----------------\n')
+        logging.info('\nCuantas filas y columnas tenemos \n', self.df.shape, '\n----------------\n')
 
     def count_null(self):
-        print('\nCuántos valores nulos tenemos en el dataset ', self.df.isnull().sum(), '\n----------------\n')
+        logging.info('\nCuántos valores nulos tenemos en el dataset ', self.df.isnull().sum(), '\n----------------\n')
 
     def count_nan(self):
-        print('\nCuántos valores nan tenemos en el dataset ', self.df.isna().sum(), '\n----------------\n')
+        logging.info('\nCuántos valores nan tenemos en el dataset ', self.df.isna().sum(), '\n----------------\n')
 
     def count_duplicates(self):
-        print('\nCuántos valores duplicados tenemos en el dataset ', self.df.duplicated().sum(), '\n----------------\n')
+        logging.info('\nCuántos valores duplicados tenemos en el dataset ', self.df.duplicated().sum(), '\n----------------\n')
 
     def typesOf(self):
-        print('\nExploramos los tipos de los datos que tenemos ', self.df.dtypes, '\n----------------\n')
+        logging.info('\nExploramos los tipos de los datos que tenemos ', self.df.dtypes, '\n----------------\n')
 
     def describing(self):
-        print(self.df.describe().T, '\n----------------\n')
+        logging.info(self.df.describe().T, '\n----------------\n')
 
     def total_eda(self):
         self.shapeOf()
