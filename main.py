@@ -32,7 +32,7 @@ df['feature_1'] = df['x'] - df['y']
 df_test['feature_1'] = df_test['x'] - df_test['y']
 
 # dropping id columns
-columns_drop = ['id', 'y', 'x']
+columns_drop = ['id', 'y', 'x', 'z']
 df.drop(columns=columns_drop, inplace=True)
 df_test.drop(columns=columns_drop, inplace=True)
 
