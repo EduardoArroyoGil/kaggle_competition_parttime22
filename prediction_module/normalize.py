@@ -87,9 +87,7 @@ class DesNorm:
         :return: inverse method to return real variable based on manual formual (x-average)/(max-min)
         '''
 
-        self.df[self.predicted] = self.df[self.predicted + "_NORM_MANUAL"]*(maximum - minimum) + average
-
-        self.df.drop(columns=self.predicted + "_NORM_MANUAL", inplace=True)
+        self.df[self.predicted] = self.df[self.predicted]*(maximum - minimum) + average
 
         return self.df
 
@@ -99,9 +97,7 @@ class DesNorm:
         :return: inverse method to return real variable based on logarithm expression (exponential to inverse)
         '''
 
-        self.df[self.predicted] = self.df[self.predicted+ "_NORM_LOG"].apply(lambda x: np.exp(x) if x != 0 else 0)
-
-        self.df.drop(columns=self.predicted + "_NORM_LOG", inplace=True)
+        self.df[self.predicted] = self.df[self.predicted].apply(lambda x: np.exp(x) if x != 0 else 0)
 
         return self.df
 
@@ -111,9 +107,7 @@ class DesNorm:
         :return: inverse method to return real variable based on root square expression
         '''
 
-        self.df[self.predicted] = self.df[self.predicted+ "_NORM_SQRT"].apply(lambda x: x**2)
-
-        self.df.drop(columns=self.predicted + "_NORM_SQRT", inplace=True)
+        self.df[self.predicted] = self.df[self.predicted].apply(lambda x: x**2)
 
         return self.df
 
@@ -128,11 +122,9 @@ class DesNorm:
         minmax = model_fitted
 
         # ajustamos el modelo utilizando nuestro set de datos inversos
-        X_desnormalized = minmax.inverse_transform(self.df[[self.predicted + "_NORM_MIXMAXSCALER"]])
+        X_desnormalized = minmax.inverse_transform(self.df[[self.predicted]])
 
         # lo unimos a nuestro dataframe original
         self.df[self.predicted] = X_desnormalized
-
-        self.df.drop(columns=self.predicted + "_NORM_MIXMAXSCALER", inplace=True)
 
         return self.df

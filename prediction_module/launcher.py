@@ -79,24 +79,24 @@ class Process:
         all_models, results = supervised.all_models()
         results["Cluster"] = data
 
-        # DESNORMALIZE PROCESS
-        logging.info(f"DESNORMALIZE PROCESS for {data} Data Frame:\n")
-        logging.info(f"Desnormalize method: {normalization}\n")
-
-        # init of desnormalize method
-        desnorm = normalize.DesNorm(df, 'price')
-
-        # choosing the desnormalize method
-        if normalization == 'manual':
-            df = desnorm.manual(average, maximum, minimum)
-        elif normalization == 'log':
-            df = desnorm.logarithm()
-        elif normalization == 'rtsq':
-            df = desnorm.root_square()
-        elif normalization == 'min_max_scaler':
-            df = desnorm.min_max_scaler(model_fitted)
-        elif normalization == 'None':
-            pass
+        # # DESNORMALIZE PROCESS
+        # logging.info(f"DESNORMALIZE PROCESS for {data} Data Frame:\n")
+        # logging.info(f"Desnormalize method: {normalization}\n")
+        #
+        # # init of desnormalize method
+        # desnorm = normalize.DesNorm(df, 'price')
+        #
+        # # choosing the desnormalize method
+        # if normalization == 'manual':
+        #     df = desnorm.manual(average, maximum, minimum)
+        # elif normalization == 'log':
+        #     df = desnorm.logarithm()
+        # elif normalization == 'rtsq':
+        #     df = desnorm.root_square()
+        # elif normalization == 'min_max_scaler':
+        #     df = desnorm.min_max_scaler(model_fitted)
+        # elif normalization == 'None':
+        #     pass
 
         dict_models = dict()
 
@@ -187,9 +187,14 @@ class Process:
                 pass
             logging.info(f"columns of DF to predict encoded: {df_encoded.columns}")
 
+            # init of normalize method
+            norm = normalize.Norm(df_encoded, 'price')
+
             # predicting
             prediction_cluster = model_cluster.predict(df_encoded)
             df_prediction_cluster = pd.DataFrame({'price': prediction_cluster})
+
+
 
             # creating dataframes of results expected
             df_data_predicted_cluster = pd.concat([df_to_predict, df_prediction_cluster], axis=1)
@@ -197,5 +202,29 @@ class Process:
 
             df_delivery_predicted_cluster = pd.concat([delivery_id, df_prediction_cluster], axis=1)
             df_prediction_delivery = df_prediction_delivery.append(df_delivery_predicted_cluster, ignore_index=True)
+
+            # DESNORMALIZE PROCESS
+            logging.info(f"DESNORMALIZE PROCESS for {cluster} Data Frame:\n")
+            logging.info(f"Desnormalize method: {normalization}\n")
+
+            # init of desnormalize method
+            desnorm = normalize.DesNorm(df_prediction, 'price')
+            desnorm_delivery = normalize.DesNorm(df_prediction_delivery, 'price')
+
+            # choosing the desnormalize method
+            if normalization == 'manual':
+                df_prediction = desnorm.manual(average, maximum, minimum)
+                df_prediction_delivery = desnorm_delivery.manual(average, maximum, minimum)
+            elif normalization == 'log':
+                df_prediction = desnorm.logarithm()
+                df_prediction_delivery = desnorm_delivery.logarithm()
+            elif normalization == 'rtsq':
+                df_prediction = desnorm.root_square()
+                df_prediction_delivery = desnorm_delivery.root_square()
+            elif normalization == 'min_max_scaler':
+                df_prediction = desnorm.min_max_scaler(model_fitted)
+                df_prediction_delivery = desnorm_delivery.min_max_scaler(model_fitted)
+            elif normalization == 'None':
+                pass
 
         return df_prediction, df_prediction_delivery
