@@ -163,12 +163,11 @@ class Process:
             df_encoded = df_to_predict.copy()
             encode = encoding.Encode(df_encoded)
             # df_test_encoded = encode.get_dummies_by_column('color')
-            df_encoded, traduction_color = encode.ordinalencoding('color', ['D', 'E', 'F', 'G', 'H', 'I', 'J'])
+            df_encoded, traduction_color = encode.ordinalencoding('color', ['J', 'I', 'H', 'G', 'F', 'E', 'D'])
             df_encoded, traduction_cut = encode.ordinalencoding('cut',
-                                                                     ['Premium', 'Ideal', 'Very Good', 'Fair', 'Good'])
+                                                                ['Good', 'Fair', 'Very Good', 'Ideal', 'Premium'])
             df_encoded, traduction_clarity = encode.ordinalencoding('clarity',
-                                                                         ['I1', 'SI2', 'SI1', 'VS2', 'VS1', 'VVS2',
-                                                                          'VVS1', 'IF'])
+                                                                    ['I1', 'SI2', 'SI1', 'VS2', 'VS1', 'VVS2', 'VVS1', 'IF'])
             # STANDARIZE PROCESS
             logging.info(f"STANDARIZE PROCESS for {cluster} Data Frame:\n")
             logging.info(f"Standarize method: {standarization}\n")

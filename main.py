@@ -28,11 +28,11 @@ df_predict_id = df_test['id']
 
 # FEATURE ENGINEERING
 # creating new features
-df['feature_1'] = df['x'] - df['y']
-df_test['feature_1'] = df_test['x'] - df_test['y']
+df['feature_1'] = (df['x'] - df['y'])
+df_test['feature_1'] = (df_test['x'] - df_test['y'])
 
-df['feature_2'] = df['y'] - df['z']
-df_test['feature_2'] = df_test['y'] - df_test['z']
+df['feature_2'] = (df['y'] - df['z'])
+df_test['feature_2'] = (df_test['y'] - df_test['z'])
 
 # dropping id columns
 columns_drop = ['id', 'y', 'x', 'z']
@@ -48,8 +48,8 @@ eda.total_eda()
 logging.debug("ENCODING PROCESS :\n")
 encode = encoding.Encode(df)
 # df = encode.get_dummies_by_column('color')
-df, traduction_color = encode.ordinalencoding('color', ['D', 'E', 'F', 'G', 'H', 'I', 'J'])
-df, traduction_cut = encode.ordinalencoding('cut', ['Premium', 'Ideal', 'Very Good', 'Fair', 'Good'])
+df, traduction_color = encode.ordinalencoding('color', ['J', 'I', 'H', 'G', 'F', 'E', 'D'])
+df, traduction_cut = encode.ordinalencoding('cut', ['Good', 'Fair', 'Very Good', 'Ideal', 'Premium'])
 df, traduction_clarity = encode.ordinalencoding('clarity', ['I1', 'SI2', 'SI1', 'VS2', 'VS1', 'VVS2', 'VVS1', 'IF'])
 
 logging.info("Columns of Data Frame encoded :\n", df.columns)
