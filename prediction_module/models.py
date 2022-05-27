@@ -6,6 +6,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn import metrics
 from sklearn import ensemble
 import xgboost as xgb
+# import lightgbm as ltb
 
 # Cluster Modeling
 # ==============================================================================
@@ -254,7 +255,9 @@ class Supervised:
 
         X_train, X_test, y_train, y_test = self.separate_set()
 
-        xgbr = xgb.XGBRegressor(objective="reg:linear", random_state=42)
+        xgbr = xgb.XGBRegressor(booster="gbtree",
+                                objective="reg:squarederror",
+                                random_state=42)
 
         xgbr.fit(X_train, y_train)
 
@@ -265,6 +268,22 @@ class Supervised:
         xgbr_results = self.metrics(y_test, y_train, y_pred_test, y_pred_train, 'xgbr')
 
         return xgbr, xgbr_results
+
+    def lightgbm(self):
+
+        X_train, X_test, y_train, y_test = self.separate_set()
+
+        lgbm = ltb.LGBMRegressor()
+
+        lgbm.fit(X_train, y_train)
+
+        # hacemos las predicciones sobre los dos set de datos el X_test y el X_train
+        y_pred_test = lgbm.predict(X_test)
+        y_pred_train = lgbm.predict(X_train)
+
+        lgbm_results = self.metrics(y_test, y_train, y_pred_test, y_pred_train, 'lgbm')
+
+        return lgbm, lgbm_results
 
     def all_models(self):
         '''
@@ -282,6 +301,7 @@ class Supervised:
             # 'rf': self.random_forest(),
             # 'gbr': self.gboostreg(),
             'xgbr': self.xgboostreg(),
+            # 'lgbm': self.lightgbm(),
         }
 
         model_names = {
@@ -290,6 +310,7 @@ class Supervised:
             # 'rf': 'Random Forest',
             # 'gbr': 'Gradient Boost Regression',
             'xgbr': 'Extreme Gradient Boost Regression',
+            # 'lgbm': 'Light GBM',
         }
 
         for key, value in models_disp.items():
