@@ -46,7 +46,7 @@ class Supervised:
         X = df.drop(predicted, axis=1)
         y = df[predicted]
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.85, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.99, random_state=42)
 
         return X_train, X_test, y_train, y_test
 
@@ -296,19 +296,19 @@ class Supervised:
         results = pd.DataFrame()
 
         models_disp = {
-            # 'lr': self.linear(),
-            # 'dt': self.decission_tree(),
-            # 'rf': self.random_forest(),
-            # 'gbr': self.gboostreg(),
+            'lr': self.linear(),
+            'dt': self.decission_tree(),
+            'rf': self.random_forest(),
+            'gbr': self.gboostreg(),
             'xgbr': self.xgboostreg(),
             # 'lgbm': self.lightgbm(),
         }
 
         model_names = {
-            # 'lr': 'Linear Regression',
-            # 'dt': 'Decision Tree',
-            # 'rf': 'Random Forest',
-            # 'gbr': 'Gradient Boost Regression',
+            'lr': 'Linear Regression',
+            'dt': 'Decision Tree',
+            'rf': 'Random Forest',
+            'gbr': 'Gradient Boost Regression',
             'xgbr': 'Extreme Gradient Boost Regression',
             # 'lgbm': 'Light GBM',
         }
