@@ -44,7 +44,7 @@ class Supervised:
         X = df.drop(predicted, axis=1)
         y = df[predicted]
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.9999, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.85, random_state=42)
 
         return X_train, X_test, y_train, y_test
 
