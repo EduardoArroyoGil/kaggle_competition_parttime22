@@ -27,7 +27,7 @@ The folder structure is composed by six folders:
 
 A process of predictive model has been created to choose automatically the best predictive model.
   
-The Best model has been ***XGBoost*** by ***Decission Trees model*** with a ***squared error regression***.
+> The Best model has been **XGBoost** by ***Decission Trees model*** with a ***squared error regression***.
 
 Extra: As well, the code accept a compose predictive model by clustering using KNN algorithm. Nevertheless, has been tested by the most clear cluster division, two clusters, and this prediction is worst than the predictive model using the whole data set together.
 
