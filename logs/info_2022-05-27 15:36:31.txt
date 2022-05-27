@@ -1,0 +1,31 @@
+DEBUG:root:EXPLORATORY DATA ANALYSIS :
+
+DEBUG:root:ENCODING PROCESS :
+
+DEBUG:root:LAUNCHING FITTING MODEL PROCESS :
+
+INFO:root:STANDARIZE PROCESS for total Data Frame:
+
+INFO:root:Standarize method: standard_scaler
+
+INFO:root:Index(['price', 'carat_ES_STANDARD', 'depth_ES_STANDARD', 'table_ES_STANDARD',
+       'feature_1_ES_STANDARD', 'feature_2_ES_STANDARD',
+       'color_encoded_ES_STANDARD', 'cut_encoded_ES_STANDARD',
+       'clarity_encoded_ES_STANDARD'],
+      dtype='object')
+INFO:root:NORMALIZE PROCESS for total Data Frame:
+
+INFO:root:Normalize method: None
+
+INFO:root:Index(['price', 'carat_ES_STANDARD', 'depth_ES_STANDARD', 'table_ES_STANDARD',
+       'feature_1_ES_STANDARD', 'feature_2_ES_STANDARD',
+       'color_encoded_ES_STANDARD', 'cut_encoded_ES_STANDARD',
+       'clarity_encoded_ES_STANDARD'],
+      dtype='object')
+INFO:root:columns of total DF to fit models encoded: Index(['carat_ES_STANDARD', 'depth_ES_STANDARD', 'table_ES_STANDARD',
+       'feature_1_ES_STANDARD', 'feature_2_ES_STANDARD',
+       'color_encoded_ES_STANDARD', 'cut_encoded_ES_STANDARD',
+       'clarity_encoded_ES_STANDARD', 'price'],
+      dtype='object')
+INFO:root:PREDICTING PROCESS for total Data Frame:
+

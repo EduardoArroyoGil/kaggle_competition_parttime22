@@ -34,6 +34,14 @@ df_test['feature_1'] = (df_test['x'] - df_test['y'])
 df['feature_2'] = (df['y'] - df['z'])
 df_test['feature_2'] = (df_test['y'] - df_test['z'])
 
+color_price = df.groupby('color').mean().price.reset_index()
+
+df = df.merge(color_price, left_on='color', right_on='color', suffixes=('_left', '_avg'))
+df = ['id', 'carat', 'cut', 'color', 'clarity', 'depth', 'table', 'x', 'y',
+       'z', 'price', 'feature_1', 'feature_2', 'price_avg']
+
+df_test = df_test.merge(color_price, left_on='color', right_on='color', suffixes=('_left', '_avg'))
+
 # dropping id columns
 columns_drop = ['id', 'y', 'x', 'z']
 df.drop(columns=columns_drop, inplace=True)
