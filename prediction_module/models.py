@@ -5,6 +5,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.model_selection import GridSearchCV
 from sklearn import metrics
 from sklearn import ensemble
+import xgboost as xgb
 
 # Cluster Modeling
 # ==============================================================================
@@ -249,6 +250,22 @@ class Supervised:
 
         return gbr, gbr_results
 
+    def xgboostreg(self):
+
+        X_train, X_test, y_train, y_test = self.separate_set()
+
+        xgbr = xgb.XGBRegressor(objective="reg:linear", random_state=42)
+
+        xgbr.fit(X_train, y_train)
+
+        # hacemos las predicciones sobre los dos set de datos el X_test y el X_train
+        y_pred_test = xgbr.predict(X_test)
+        y_pred_train = xgbr.predict(X_train)
+
+        xgbr_results = self.metrics(y_test, y_train, y_pred_test, y_pred_train, 'xgbr')
+
+        return xgbr, xgbr_results
+
     def all_models(self):
         '''
 
@@ -263,14 +280,16 @@ class Supervised:
             # 'lr': self.linear(),
             # 'dt': self.decission_tree(),
             # 'rf': self.random_forest(),
-            'gbr': self.gboostreg(),
+            # 'gbr': self.gboostreg(),
+            'xgbr': self.xgboostreg(),
         }
 
         model_names = {
-            'lr': 'Linear Regression',
-            'dt': 'Decision Tree',
-            'rf': 'Random Forest',
-            'gbr': 'Gradient Boost Regression',
+            # 'lr': 'Linear Regression',
+            # 'dt': 'Decision Tree',
+            # 'rf': 'Random Forest',
+            # 'gbr': 'Gradient Boost Regression',
+            'xgbr': 'Extreme Gradient Boost Regression',
         }
 
         for key, value in models_disp.items():

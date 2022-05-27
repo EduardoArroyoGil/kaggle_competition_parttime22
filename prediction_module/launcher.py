@@ -156,6 +156,8 @@ class Process:
             cluster = key
             model_type = value
 
+            print(best_model)
+
             model_cluster = all_models[cluster][model_type]
 
             # ENCODING PROCESS
